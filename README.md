@@ -1,2 +1,2 @@
 # covid19
-covid19 analysese
+covid19 analyses
