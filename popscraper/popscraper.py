@@ -14,8 +14,7 @@ for char in string.ascii_lowercase:
     link_wrapper = letter_page.find_all(class_ = "biglink")[0]
     for child in link_wrapper.findChildren("a"):
         county = btsp(requests.get(base/child["href"]).text, 'html.parser')
-        county_name, state = child.text.split(", ")
-        county_name = county_name.replace(" County", "")
+        county_name, state = child.text.split(" County, ")
         pop_density = next(_.text for _ in county.find_all('b') if "p/mi²" in _.text).split(" ")[0]
         print(county_name, state, pop_density)
         df = pd.concat([df, pd.DataFrame([[state, county_name, pop_density]], columns=["state", "county", "population_density"])])
