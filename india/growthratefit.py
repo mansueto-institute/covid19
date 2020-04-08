@@ -105,10 +105,6 @@ def run_analysis(df: pf.DataFrame,
     pred_intercept, pred_gradient = pred.params
     days_to_critical, days_to_criticalm, days_to_criticalM = map(int, -pred_intercept/(pred_gradient + pred.bse[1] * np.array([0, -2, 2])))
 
-    # days_to_critical  = int(-pred_intercept/pred_gradient)
-    # days_to_criticalM = int(-pred_intercept/(pred_gradient + 2 * pred.bse[1]))
-    # days_to_criticalm = int(-pred_intercept/(pred_gradient - 2 * pred.bse[1]))
-
     # figure: log delta vs time
     fig, ax = plt.subplots()
     totals.plot(y = "logdelta", ax = ax, label = "log(confirmed - recovered - dead)")
