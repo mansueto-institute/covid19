@@ -47,12 +47,6 @@ drop_cols = {
     "type of transmission",
 }
 
-def linreg(X: np.array, y: np.array) -> Tuple[float, float, float, float, float]:
-    """ linear fit: y = a * x + b; returns a, b, stderr(a), stderr(b), R^2 """
-    lr = sm.OLS(y, sm.add_constant(X)).fit()
-    # return np.concatenate([lr.params[::-1], [lr.rsquared], np.power(lr.bse, 2)[::-1]])
-    return (*lr.params, *lr.bse, lr.rsquared)
-
 # assuming analysis for data structure from COVID19-India saved as resaved, properly-quoted file
 def load_data(datapath: Path, reduced: bool = False) -> pd.DataFrame: 
     return pd.read_csv(datapath, 
@@ -110,4 +104,3 @@ def run_analysis(df: pf.DataFrame,
 
     # to do: infectious vs time (show models and best fit from original code)
 
-    
